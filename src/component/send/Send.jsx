@@ -307,7 +307,7 @@ const Send = () => {
     };
   }, [networkVersion]);
 
-  const handleTransfer = async () => {
+  const handleERC20Transfer = async () => {
     //Calling the metamask plugin
     const Web3 = new web3(window.ethereum);
 
@@ -323,16 +323,17 @@ const Send = () => {
     //   const ethValue = Number(ethValueBigInt);
 
     //Intialize the contract
-    var nxcTokenContract = new Web3.eth.Contract(NXC_Token_ABI, contractAddress, {
-      from: address,
-    });
+    var nxcTokenContract = new Web3.eth.Contract(
+      NXC_Token_ABI,
+      contractAddress,
+      {
+        from: address,
+      }
+    );
     console.log("nxcTokenContract", nxcTokenContract);
     console.log("address", address);
     // Call the contract method transfer to send token to recipient id
-    const transaction = nxcTokenContract.methods.transfer(
-      recipient,
-      ethValue
-    );
+    const transaction = nxcTokenContract.methods.transfer(recipient, ethValue);
     const gas = await transaction.estimateGas({
       from: address,
     });
@@ -355,6 +356,34 @@ const Send = () => {
       });
   };
 
+ const handleNativeTransfer = async () => {
+   if (!provider || !address) return;
+
+   const ethValue = ethers.parseUnits(amount.toString(), 18); // Use 18 as the standard for ETH
+
+   const tx = {
+     to: recipient,
+     value: ethValue,
+     chainId,
+   };
+
+   try {
+     const signer = await provider.getSigner();
+     const txResponse = await signer.sendTransaction(tx);
+     setStatus(`Transaction sent! Hash: ${txResponse.hash}`);
+
+     // Listen for transaction confirmation (optional)
+     provider.once(txResponse.hash, (transaction) => {
+       if (transaction.confirmations) {
+         setStatus("Transfer successful");
+       }
+     });
+   } catch (error) {
+     console.error(error);
+     setStatus(`Error: ${error.message}`);
+   }
+ };
+
   return (
     <div className="App">
       <header
@@ -367,7 +396,10 @@ const Send = () => {
       </header>
 
       <div>
-        <h1>ERC20 Token Transfer</h1>
+        <h1>
+          {contractAddress === "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee" ? 'Native Token Transfer' : ' ERC20 Token Transfer'}
+         
+        </h1>
         <p>Connected Account: {address}</p>
         <input
           type="text"
@@ -387,7 +419,19 @@ const Send = () => {
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
         />
-        <button onClick={handleTransfer}>Transfer</button>
+        <button
+          onClick={() => {
+            if (
+              contractAddress === "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+            ) {
+              handleNativeTransfer();
+            } else {
+              handleERC20Transfer();
+            }
+          }}
+        >
+          Transfer
+        </button>
         <p>{status}</p>
       </div>
     </div>
