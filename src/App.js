@@ -15,6 +15,8 @@ function App() {
   const [price, setPrice] = useState();
   const [quote, setQuote] = useState();
 
+  console.log("price", price);
+
   return (
     <div
       className={`flex min-h-screen flex-col items-center justify-between p-24`}

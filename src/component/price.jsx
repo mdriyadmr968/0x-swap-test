@@ -22,7 +22,7 @@ import BigNumber from "bignumber.js";
 
 export const DEFAULT_BUY_TOKEN = (chainId) => {
   if (chainId === 137) {
-    return "wmatic";
+    return "matic";
   }
 };
 
@@ -33,7 +33,7 @@ export default function PriceView({
   setFinalize,
   chainId,
 }) {
-  const [sellToken, setSellToken] = useState("wmatic");
+  const [sellToken, setSellToken] = useState("matic");
   const [buyToken, setBuyToken] = useState("usdc");
   const [sellAmount, setSellAmount] = useState("");
   const [buyAmount, setBuyAmount] = useState("");
@@ -131,12 +131,13 @@ export default function PriceView({
   ]);
 
   // Hook for fetching balance information for specified token for a specific takerAddress
-  const { data, isError, isLoading } = useBalance({
-    address: takerAddress,
-    token: sellTokenObject.address,
-  });
+const { data, isError, isLoading } = useBalance({
+  address: takerAddress,
+  ...(sellToken !== "matic" ? { token: sellTokenObject.address } : {}),
+});
 
   console.log("taker sellToken balance: ", data);
+  console.log("sellTokenObject.address: ", sellTokenObject.address);
 
   const inSufficientBalance =
     data && sellAmount

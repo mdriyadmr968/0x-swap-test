@@ -12,30 +12,21 @@ export const MAX_ALLOWANCE =
 export const POLYGON_TOKENS = [
   {
     chainId: 137,
+    name: "MATIC",
+    symbol: "MATIC",
+    decimals: 18,
+    address: "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+    logoURI:
+      "https://talewallet-assets.s3.ap-southeast-1.amazonaws.com/token-icon/polygon.png",
+  },
+  {
+    chainId: 137,
     name: "USDC",
     symbol: "USDC",
     decimals: 6,
     address: "0x2791bca1f2de4661ed88a30c99a7a9449aa84174",
     logoURI:
       "https://talewallet-assets.s3.ap-southeast-1.amazonaws.com/token-icon/USDC.png",
-  },
-  {
-    chainId: 137,
-    name: "Wrapped Matic",
-    symbol: "WMATIC",
-    decimals: 18,
-    address: "0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270",
-    logoURI:
-      "https://raw.githubusercontent.com/maticnetwork/polygon-token-assets/main/assets/tokenAssets/matic.svg",
-  },
-  {
-    chainId: 137,
-    name: "USD Coin",
-    symbol: "USDC",
-    decimals: 6,
-    address: "0x2791bca1f2de4661ed88a30c99a7a9449aa84174",
-    logoURI:
-      "https://raw.githubusercontent.com/maticnetwork/polygon-token-assets/main/assets/tokenAssets/usdc.svg",
   },
   {
     chainId: 137,
@@ -49,24 +40,23 @@ export const POLYGON_TOKENS = [
 ];
 
 export const POLYGON_TOKENS_BY_SYMBOL = {
-
-  wmatic: {
+  matic: {
     chainId: 137,
-    name: "Wrapped Matic",
-    symbol: "WMATIC",
+    name: "MATIC",
+    symbol: "MATIC",
     decimals: 18,
-    address: "0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270",
+    address: "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
     logoURI:
-      "https://raw.githubusercontent.com/maticnetwork/polygon-token-assets/main/assets/tokenAssets/matic.svg",
+      "https://talewallet-assets.s3.ap-southeast-1.amazonaws.com/token-icon/polygon.png",
   },
   usdc: {
     chainId: 137,
-    name: "USD Coin",
+    name: "USDC",
     symbol: "USDC",
     decimals: 6,
     address: "0x2791bca1f2de4661ed88a30c99a7a9449aa84174",
     logoURI:
-      "https://raw.githubusercontent.com/maticnetwork/polygon-token-assets/main/assets/tokenAssets/usdc.svg",
+      "https://talewallet-assets.s3.ap-southeast-1.amazonaws.com/token-icon/USDC.png",
   },
   dai: {
     chainId: 137,
@@ -80,23 +70,23 @@ export const POLYGON_TOKENS_BY_SYMBOL = {
 };
 
 export const POLYGON_TOKENS_BY_ADDRESS = {
-  "0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270": {
+  "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee": {
     chainId: 137,
-    name: "Wrapped Matic",
-    symbol: "WMATIC",
+    name: "MATIC",
+    symbol: "MATIC",
     decimals: 18,
-    address: "0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270",
+    address: "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
     logoURI:
-      "https://raw.githubusercontent.com/maticnetwork/polygon-token-assets/main/assets/tokenAssets/matic.svg",
+      "https://talewallet-assets.s3.ap-southeast-1.amazonaws.com/token-icon/polygon.png",
   },
   "0x2791bca1f2de4661ed88a30c99a7a9449aa84174": {
     chainId: 137,
-    name: "USD Coin",
+    name: "USDC",
     symbol: "USDC",
     decimals: 6,
     address: "0x2791bca1f2de4661ed88a30c99a7a9449aa84174",
     logoURI:
-      "https://raw.githubusercontent.com/maticnetwork/polygon-token-assets/main/assets/tokenAssets/usdc.svg",
+      "https://talewallet-assets.s3.ap-southeast-1.amazonaws.com/token-icon/USDC.png",
   },
   "0x8f3cf7ad23cd3cadbd9735aff958023239c6a063": {
     chainId: 137,
